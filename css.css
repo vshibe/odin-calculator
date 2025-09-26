@@ -1,0 +1,44 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+
+#calculator {
+	height: 400px;
+	width: 300px;
+	border: solid 4px red;
+	background-color: #000;
+}
+
+#calculator-results {
+	border: solid 4px blue;
+	height: 34%;
+}
+
+#calculator-buttons {
+	display: flex;
+	flex-flow: row wrap;
+	gap: 4px;
+	border: solid 4px;
+	height: 66%;
+}
+
+button {
+	height: calc(25% - 4px*0.75);
+	width: calc(25% - 4px*0.75);
+	border: none;
+	border-radius: 30%;
+	background-color: #222;
+	font-size: 20px;
+	color: white;
+}
+
+#divi, #mult, #sum, #min {
+	background-color: #333;
+}
+
+#equals, #back {
+	background-color: white;
+	color: black;
+}
