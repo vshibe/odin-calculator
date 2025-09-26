@@ -81,5 +81,5 @@ buttons.addEventListener("click", (e) => {
 			break;
 	};
 
-	results.textContent = num2 ? `${num1} ${operator} ${num2}` : operator ? `${num1} ${operator}` : `${num1}`;
+	results.textContent = num2 ? `${num1} ${operator} ${num2}` : operator ? `${num1} ${operator}` : num1 ? `${num1}` : "";
 });
