@@ -24,9 +24,12 @@ function operate(num1, num2, operator) {
 };
 
 let calculator = document.getElementById("calculator");
+let results = document.getElementById("calculator-results");
 
 calculator.addEventListener("click", (e) => {
 	console.log(e.target.textContent);
 
+	switch(e.target.textContent) {
 
+	};
 });

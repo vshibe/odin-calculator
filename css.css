@@ -20,8 +20,16 @@ body {
 }
 
 #calculator-results {
-	border: solid 4px blue;
+	display: flex;
+	justify-content: end;
+	align-items: center;
+	background-color: black;
+	padding: 4px;
+	text-align: end;
+	font-size: 36px;
+	color: white;
 	height: 34%;
+	
 }
 
 #calculator-buttons {
