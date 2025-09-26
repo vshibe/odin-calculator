@@ -4,6 +4,8 @@ let operator = undefined;
 
 function operate(num1, num2, operator) {
 	let result = undefined;
+	num1 = +num1;
+	num2 = +num2;
 
 	switch(operator) {
 		case "+":
@@ -19,17 +21,45 @@ function operate(num1, num2, operator) {
 			result = num1/num2;
 			break;
 	};
-
+	
 	console.log(result);
+	return result;
 };
 
 let calculator = document.getElementById("calculator");
 let results = document.getElementById("calculator-results");
+let buttons = document.getElementById("calculator-buttons");
 
-calculator.addEventListener("click", (e) => {
+buttons.addEventListener("click", (e) => {
 	console.log(e.target.textContent);
 
 	switch(e.target.textContent) {
+		case "+":
+		case "-":
+		case "*":
+		case "/":
+			operator = e.target.textContent;
+			break;
+		
+		case "=":
+			num1 = operate(num1, num2, operator);
+			num2 = undefined;
+			operator = undefined;
+			break;
 
+		case "<-":
+			
+			break;
+		
+		default:
+			if(!operator) {
+				num1 = num1 ? num1 + e.target.textContent : e.target.textContent;
+			}
+			else {
+				num2 = num2 ? num2 + e.target.textContent : e.target.textContent;
+			};
+			break;
 	};
+
+	results.textContent = num2 ? `${num1} ${operator} ${num2}` : `${num1}`;
 });
