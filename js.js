@@ -26,6 +26,16 @@ function operate(num1, num2, operator) {
 	return result;
 };
 
+function backspace() {
+	if(num2) {
+		num2 = num2.slice(0,-1);
+	} else if (operator) {
+		operator = operator.slice(0,-1);
+	} else if (num1) {
+		num1 = num1.slice(0,-1);
+	};
+};
+
 let calculator = document.getElementById("calculator");
 let results = document.getElementById("calculator-results");
 let buttons = document.getElementById("calculator-buttons");
@@ -58,7 +68,7 @@ buttons.addEventListener("click", (e) => {
 			break;
 
 		case "<-":
-			
+			backspace();
 			break;
 		
 		default:
