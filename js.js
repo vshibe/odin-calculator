@@ -6,7 +6,7 @@ function operate(num1, num2, operator) {
 	let result = undefined;
 	num1 = +num1;
 	num2 = +num2;
-
+	
 	switch(operator) {
 		case "+":
 			result = num1+num2;
@@ -31,8 +31,12 @@ let results = document.getElementById("calculator-results");
 let buttons = document.getElementById("calculator-buttons");
 
 buttons.addEventListener("click", (e) => {
-	console.log(e.target.textContent);
+	if(e.target.tagName != "BUTTON") {
+		return;
+	};
 
+	console.log(e.target.textContent);
+	
 	switch(e.target.textContent) {
 		case "+":
 		case "-":
@@ -42,9 +46,15 @@ buttons.addEventListener("click", (e) => {
 			break;
 		
 		case "=":
-			num1 = operate(num1, num2, operator);
-			num2 = undefined;
-			operator = undefined;
+			if(num1 && num2 && operator) {
+				num1 = operate(num1, num2, operator);
+				num2 = undefined;
+				operator = undefined;
+			} 
+			else {
+				console.log("incomplete");
+			};
+			
 			break;
 
 		case "<-":
