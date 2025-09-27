@@ -8,14 +8,14 @@ body {
 	display: flex;
 	align-items: center;
 	min-height: 100vh;
-	background-color: #333;
+	background-color: #111;
 }
 
 #calculator {
 	margin: auto;
 	height: 400px;
 	width: 300px;
-	border: solid 4px red;
+	border: solid 4px pink;
 	background-color: #000;
 }
 
