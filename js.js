@@ -23,11 +23,10 @@ function operate(num1, num2, operator) {
 	};
 	
 	console.log(result);
-	return result;
+	return String(result);
 };
 
 function backspace() {
-	
 	if(num2) {
 		if(num2 === Infinity || num2 === NaN) {
 			num2 = "";
@@ -45,18 +44,10 @@ function backspace() {
 	};
 };
 
-let calculator = document.getElementById("calculator");
-let results = document.getElementById("calculator-results");
-let buttons = document.getElementById("calculator-buttons");
+function handleButtonPress(input) {
+	console.log(input);
 
-buttons.addEventListener("click", (e) => {
-	if(e.target.tagName != "BUTTON") {
-		return;
-	};
-
-	console.log(e.target.textContent);
-	
-	switch(e.target.textContent) {
+	switch(input) {
 		case "+":
 		case "-":
 		case "*":
@@ -64,10 +55,11 @@ buttons.addEventListener("click", (e) => {
 			if(!num1) {
 				num1 = 0;
 			};
-			operator = e.target.textContent;
+			operator = input;
 			break;
 		
 		case "=":
+		case "Enter":
 			if(num1 !== undefined && num2 !== undefined && operator !== undefined) {
 				num1 = operate(num1, num2, operator);
 				num2 = undefined;
@@ -80,18 +72,38 @@ buttons.addEventListener("click", (e) => {
 			break;
 
 		case "<-":
+		case "Backspace":
 			backspace();
 			break;
 		
-		default:
+		case "0": case "1": case "2": case "3": case "4": case "5":
+		case "6": case "7": case "8": case "9":
 			if(!operator) {
-				num1 = num1 ? num1 + e.target.textContent : e.target.textContent;
+				num1 = num1 ? num1 + input : input;
 			}
 			else {
-				num2 = num2 ? num2 + e.target.textContent : e.target.textContent;
+				num2 = num2 ? num2 + input : input;
 			};
 			break;
 	};
 
 	results.textContent = num2 ? `${num1} ${operator} ${num2}` : operator ? `${num1} ${operator}` : num1 ? `${num1}` : "";
+};
+
+
+let calculator = document.getElementById("calculator");
+let results = document.getElementById("calculator-results");
+let buttons = document.getElementById("calculator-buttons");
+
+buttons.addEventListener("click", (e) => {
+	if(e.target.tagName != "BUTTON") {
+		return;
+	};
+
+	handleButtonPress(e.target.textContent);
+});
+
+document.addEventListener("keydown", (e) => {
+	console.log(e);
+	handleButtonPress(e.key);
 });
