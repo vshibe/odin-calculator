@@ -27,12 +27,21 @@ function operate(num1, num2, operator) {
 };
 
 function backspace() {
+	
 	if(num2) {
-		num2 = num2.slice(0,-1);
+		if(num2 === Infinity || num2 === NaN) {
+			num2 = "";
+		} else {
+			num2 = num2.slice(0,-1);
+		};
 	} else if (operator) {
 		operator = operator.slice(0,-1);
 	} else if (num1) {
-		num1 = num1.slice(0,-1);
+		if(num1 === Infinity || num1 === NaN) {
+			num1 = "";
+		} else {
+			num1 = num1.slice(0,-1);
+		};
 	};
 };
 
@@ -52,11 +61,14 @@ buttons.addEventListener("click", (e) => {
 		case "-":
 		case "*":
 		case "/":
+			if(!num1) {
+				num1 = 0;
+			};
 			operator = e.target.textContent;
 			break;
 		
 		case "=":
-			if(num1 && num2 && operator) {
+			if(num1 !== undefined && num2 !== undefined && operator !== undefined) {
 				num1 = operate(num1, num2, operator);
 				num2 = undefined;
 				operator = undefined;
